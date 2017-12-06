@@ -1,4 +1,7 @@
 ﻿using System;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore;
 
 namespace WebApi
 {
@@ -6,7 +9,12 @@ namespace WebApi
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            BuildWebHost(args).Run();
         }
+
+        public static IWebHost BuildWebHost(string[] args) =>
+        WebHost.CreateDefaultBuilder(args)
+            .UseStartup<Startup>()
+            .Build();
     }
 }
