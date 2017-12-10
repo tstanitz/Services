@@ -9,22 +9,21 @@ namespace GrpcServer
 {
     public class ContentServerImpl : ContentServerBase
     {
-        public override Task<PhotoSetsDataResult> GetContent_v1(Request request, ServerCallContext context)
+        public async override Task<PhotoSetsDataResult> GetContent_v1(Request request, ServerCallContext context)
         {
-            var contentJson = ContentProvider.GetJson();
+            var contentJson = await ContentProvider.GetJsonAsync();
 
             var photoSets = JsonConvert.DeserializeObject<Shared.Domain.PhotoSetsDataResult>(contentJson);
             PhotoSetsDataResult photoSetsDataResult = GetPhotoSetsDataResult(photoSets);
 
-            return Task.FromResult(photoSetsDataResult);
+            photoSetsDataResult.ActionName = nameof(GetContent_v1);
+
+            return photoSetsDataResult;
         }
 
         private static PhotoSetsDataResult GetPhotoSetsDataResult(Shared.Domain.PhotoSetsDataResult photoSets)
         {
-            var photoSetsDataResult = new PhotoSetsDataResult
-            {
-                ServerName = nameof(ContentServerImpl)
-            };
+            var photoSetsDataResult = new PhotoSetsDataResult();
 
             foreach (var photoSet in photoSets.PhotoSets.PhotoSet)
             {

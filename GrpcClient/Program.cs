@@ -23,7 +23,7 @@ namespace GrpcClient
                 }
             }
 
-            Console.WriteLine($"{photoSets.ServerName}: {string.Join(", ", ids)}");
+            Console.WriteLine($"{photoSets.ActionName}: {string.Join(", ", ids)}");
             await channel.ShutdownAsync();
         }
     }

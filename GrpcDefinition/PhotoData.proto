@@ -8,7 +8,7 @@ service ContentServer{
 
 message PhotoSetsDataResult{
 	repeated PhotoSetsData PhotoSets = 1;
-	string ServerName = 2;
+	string ActionName = 2;
 }
 
 message PhotoSetsData{

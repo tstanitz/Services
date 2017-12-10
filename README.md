@@ -15,7 +15,7 @@ Compares the difference when the Controller returns a JSON from object and the c
 
 1. Receives content JSON from server
 2. Deserialize to C# object
-3. Display server name and ids
+3. Display action name and ids
 
 **GRPC server(GetContent_v1) steps:**
 
@@ -27,4 +27,4 @@ Compares the difference when the Controller returns a JSON from object and the c
 **GRPC client steps:**
 
 1. Receives GRPC object
-2. Display server name and ids
+2. Display action name and ids

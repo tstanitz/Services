@@ -16,7 +16,7 @@ namespace WebClient
                 response.EnsureSuccessStatusCode();
                 var contentJson = await response.Content.ReadAsStringAsync();
                 var photoSets = JsonConvert.DeserializeObject<PhotoSetsDataResult>(contentJson);
-                System.Console.WriteLine($"{photoSets.ServerName}: {string.Join(", ", photoSets.PhotoSets.PhotoSet.Select(ps => ps.Id))}");
+                System.Console.WriteLine($"{photoSets.ActionName}: {string.Join(", ", photoSets.PhotoSets.PhotoSet.Select(ps => ps.Id))}");
             }
         }
     }

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Shared;
 using Shared.Domain;
+using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
@@ -9,11 +10,11 @@ namespace WebApi.Controllers
     {
         [HttpGet]
         [Route("/api/v1/content")]
-        public IActionResult GetContent()
+        public async Task<IActionResult> GetContent()
         {
-            var contentJson = ContentProvider.GetJson();
+            var contentJson = await ContentProvider.GetJsonAsync();
             var photoSets = JsonConvert.DeserializeObject<PhotoSetsDataResult>(contentJson);
-            photoSets.ServerName = nameof(ContentController);
+            photoSets.ActionName = nameof(GetContent);
             return Json(photoSets);
         }
     }

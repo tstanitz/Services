@@ -23,7 +23,7 @@ namespace GrpcDefinition {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg9QaG90b0RhdGEucHJvdG8iTAoTUGhvdG9TZXRzRGF0YVJlc3VsdBIhCglQ",
-            "aG90b1NldHMYASADKAsyDi5QaG90b1NldHNEYXRhEhIKClNlcnZlck5hbWUY",
+            "aG90b1NldHMYASADKAsyDi5QaG90b1NldHNEYXRhEhIKCkFjdGlvbk5hbWUY",
             "AiABKAkiMAoNUGhvdG9TZXRzRGF0YRIfCghQaG90b1NldBgBIAMoCzINLlBo",
             "b3RvU2V0RGF0YSKVAQoMUGhvdG9TZXREYXRhEgoKAklkGAEgASgJEg8KB1By",
             "aW1hcnkYAiABKAkSGwoFVGl0bGUYAyABKAsyDC5Db250ZW50RGF0YRIhCgtE",
@@ -35,7 +35,7 @@ namespace GrpcDefinition {
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::GrpcDefinition.PhotoSetsDataResult), global::GrpcDefinition.PhotoSetsDataResult.Parser, new[]{ "PhotoSets", "ServerName" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GrpcDefinition.PhotoSetsDataResult), global::GrpcDefinition.PhotoSetsDataResult.Parser, new[]{ "PhotoSets", "ActionName" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GrpcDefinition.PhotoSetsData), global::GrpcDefinition.PhotoSetsData.Parser, new[]{ "PhotoSet" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GrpcDefinition.PhotoSetData), global::GrpcDefinition.PhotoSetData.Parser, new[]{ "Id", "Primary", "Title", "Description", "DateCreate", "DateUpdate" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GrpcDefinition.ContentData), global::GrpcDefinition.ContentData.Parser, new[]{ "Content" }, null, null, null),
@@ -71,7 +71,7 @@ namespace GrpcDefinition {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PhotoSetsDataResult(PhotoSetsDataResult other) : this() {
       photoSets_ = other.photoSets_.Clone();
-      serverName_ = other.serverName_;
+      actionName_ = other.actionName_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -89,14 +89,14 @@ namespace GrpcDefinition {
       get { return photoSets_; }
     }
 
-    /// <summary>Field number for the "ServerName" field.</summary>
-    public const int ServerNameFieldNumber = 2;
-    private string serverName_ = "";
+    /// <summary>Field number for the "ActionName" field.</summary>
+    public const int ActionNameFieldNumber = 2;
+    private string actionName_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string ServerName {
-      get { return serverName_; }
+    public string ActionName {
+      get { return actionName_; }
       set {
-        serverName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        actionName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -114,7 +114,7 @@ namespace GrpcDefinition {
         return true;
       }
       if(!photoSets_.Equals(other.photoSets_)) return false;
-      if (ServerName != other.ServerName) return false;
+      if (ActionName != other.ActionName) return false;
       return true;
     }
 
@@ -122,7 +122,7 @@ namespace GrpcDefinition {
     public override int GetHashCode() {
       int hash = 1;
       hash ^= photoSets_.GetHashCode();
-      if (ServerName.Length != 0) hash ^= ServerName.GetHashCode();
+      if (ActionName.Length != 0) hash ^= ActionName.GetHashCode();
       return hash;
     }
 
@@ -134,9 +134,9 @@ namespace GrpcDefinition {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       photoSets_.WriteTo(output, _repeated_photoSets_codec);
-      if (ServerName.Length != 0) {
+      if (ActionName.Length != 0) {
         output.WriteRawTag(18);
-        output.WriteString(ServerName);
+        output.WriteString(ActionName);
       }
     }
 
@@ -144,8 +144,8 @@ namespace GrpcDefinition {
     public int CalculateSize() {
       int size = 0;
       size += photoSets_.CalculateSize(_repeated_photoSets_codec);
-      if (ServerName.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(ServerName);
+      if (ActionName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ActionName);
       }
       return size;
     }
@@ -156,8 +156,8 @@ namespace GrpcDefinition {
         return;
       }
       photoSets_.Add(other.photoSets_);
-      if (other.ServerName.Length != 0) {
-        ServerName = other.ServerName;
+      if (other.ActionName.Length != 0) {
+        ActionName = other.ActionName;
       }
     }
 
@@ -174,7 +174,7 @@ namespace GrpcDefinition {
             break;
           }
           case 18: {
-            ServerName = input.ReadString();
+            ActionName = input.ReadString();
             break;
           }
         }

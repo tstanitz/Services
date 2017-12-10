@@ -7,7 +7,7 @@ namespace Shared.Domain
     public class PhotoSetsDataResult
     {
         public PhotoSetsData PhotoSets { get; set; }
-        public string ServerName { get; set; }
+        public string ActionName { get; set; }
     }
 
     public class PhotoSetsData
