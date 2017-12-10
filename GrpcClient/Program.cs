@@ -1,15 +1,19 @@
 ﻿using Grpc.Core;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using static GrpcDefinition.ContentServer;
 
 namespace GrpcClient
 {
-    class Program
+    public class Program
     {
         static async Task Main(string[] args)
+        {
+            await GetContent_v1Async();
+        }
+
+        public static async Task GetContent_v1Async()
         {
             var channel = new Channel("localhost:50051", ChannelCredentials.Insecure);
             var client = new ContentServerClient(channel);
