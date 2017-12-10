@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Shared.Domain;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -11,10 +12,11 @@ namespace WebClient
         {
             using(var client = new HttpClient())
             {
-                var response = await client.GetAsync("http://localhost:5000/api/content");
+                var response = await client.GetAsync("http://localhost:5000/api/v1/content");
                 response.EnsureSuccessStatusCode();
-                var content = await response.Content.ReadAsStringAsync();
-                var photoSets = JsonConvert.DeserializeObject<PhotoSetsDataResult>(content);
+                var contentJson = await response.Content.ReadAsStringAsync();
+                var photoSets = JsonConvert.DeserializeObject<PhotoSetsDataResult>(contentJson);
+                System.Console.WriteLine($"{photoSets.ServerName}: {string.Join(", ", photoSets.PhotoSets.PhotoSet.Select(ps => ps.Id))}");
             }
         }
     }

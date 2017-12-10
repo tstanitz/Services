@@ -1,0 +1,1 @@
+﻿protoc --grpc_out=. --csharp_out=. --plugin=protoc-gen-grpc=%ToolsPath%grpc_csharp_plugin.exe PhotoData.proto

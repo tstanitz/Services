@@ -1,12 +1,23 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Grpc.Core;
+using static GrpcDefinition.ContentServer;
 
 namespace GrpcServer
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var server = new Server
+            {
+                Ports = { new ServerPort("localhost", 50051, ServerCredentials.Insecure) },
+                Services = { BindService(new ContentServerImpl()) }
+            };
+
+            server.Start();
+            Console.ReadKey();
+            await server.ShutdownAsync();
         }
     }
 }

@@ -8,11 +8,12 @@ namespace WebApi.Controllers
     public class ContentController : Controller
     {
         [HttpGet]
-        [Route("/api/content")]
+        [Route("/api/v1/content")]
         public IActionResult GetContent()
         {
-            var json = ContentProvider.GetJson();
-            var photoSets = JsonConvert.DeserializeObject<PhotoSetsDataResult>(json);
+            var contentJson = ContentProvider.GetJson();
+            var photoSets = JsonConvert.DeserializeObject<PhotoSetsDataResult>(contentJson);
+            photoSets.ServerName = nameof(ContentController);
             return Json(photoSets);
         }
     }

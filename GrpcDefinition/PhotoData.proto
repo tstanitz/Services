@@ -1,0 +1,31 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "GrpcDefinition";
+
+service ContentServer{
+	rpc GetContent_v1(Request) returns(PhotoSetsDataResult){}
+}
+
+message PhotoSetsDataResult{
+	repeated PhotoSetsData PhotoSets = 1;
+	string ServerName = 2;
+}
+
+message PhotoSetsData{
+	repeated PhotoSetData PhotoSet = 1;
+}
+
+message PhotoSetData{
+	string Id = 1;
+	string Primary = 2;
+	ContentData Title = 3;
+	ContentData Description = 4;
+	string Date_Create = 5;
+	string Date_Update = 6;
+}
+
+message ContentData{
+	string _Content = 1;
+}
+
+message Request{}
