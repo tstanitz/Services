@@ -23,6 +23,13 @@ namespace GrpcDefinition {
         __Marshaller_Request,
         __Marshaller_PhotoSetsDataResult);
 
+    static readonly grpc::Method<global::GrpcDefinition.Request, global::GrpcDefinition.PhotoSetsDataResult> __Method_GetContent_v2 = new grpc::Method<global::GrpcDefinition.Request, global::GrpcDefinition.PhotoSetsDataResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetContent_v2",
+        __Marshaller_Request,
+        __Marshaller_PhotoSetsDataResult);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -33,6 +40,11 @@ namespace GrpcDefinition {
     public abstract partial class ContentServerBase
     {
       public virtual global::System.Threading.Tasks.Task<global::GrpcDefinition.PhotoSetsDataResult> GetContent_v1(global::GrpcDefinition.Request request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::GrpcDefinition.PhotoSetsDataResult> GetContent_v2(global::GrpcDefinition.Request request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -78,6 +90,22 @@ namespace GrpcDefinition {
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetContent_v1, null, options, request);
       }
+      public virtual global::GrpcDefinition.PhotoSetsDataResult GetContent_v2(global::GrpcDefinition.Request request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetContent_v2(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::GrpcDefinition.PhotoSetsDataResult GetContent_v2(global::GrpcDefinition.Request request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetContent_v2, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::GrpcDefinition.PhotoSetsDataResult> GetContent_v2Async(global::GrpcDefinition.Request request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return GetContent_v2Async(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::GrpcDefinition.PhotoSetsDataResult> GetContent_v2Async(global::GrpcDefinition.Request request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetContent_v2, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override ContentServerClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -90,7 +118,8 @@ namespace GrpcDefinition {
     public static grpc::ServerServiceDefinition BindService(ContentServerBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_GetContent_v1, serviceImpl.GetContent_v1).Build();
+          .AddMethod(__Method_GetContent_v1, serviceImpl.GetContent_v1)
+          .AddMethod(__Method_GetContent_v2, serviceImpl.GetContent_v2).Build();
     }
 
   }
