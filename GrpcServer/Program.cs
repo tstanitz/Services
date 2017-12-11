@@ -7,7 +7,7 @@ namespace GrpcServer
 {
     public class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
             var server = new Server
             {
@@ -17,7 +17,7 @@ namespace GrpcServer
 
             server.Start();
             Console.ReadKey();
-            await server.ShutdownAsync();
+            server.ShutdownAsync().Wait();
         }
     }
 }

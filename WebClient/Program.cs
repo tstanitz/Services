@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Running;
+using Newtonsoft.Json;
 using Shared.Domain;
 using System;
 using System.Linq;
@@ -9,21 +11,28 @@ namespace WebClient
 {
     public class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
-            await GetApiContenAsync();
+            BenchmarkRunner.Run<BenchmarkClass>();
+        }
+    }
+
+    public class BenchmarkClass
+    {
+        private readonly HttpClient client;
+
+        public BenchmarkClass()
+        {
+            client = new HttpClient();
         }
 
-        public static async Task GetApiContenAsync(int id = 0)
+        [Benchmark]
+        public async Task Execute()
         {
-            using (var client = new HttpClient())
-            {
-                var response = await client.GetAsync($"http://localhost:5000/api/v1/content/{id}");
-                response.EnsureSuccessStatusCode();
-                var contentJson = await response.Content.ReadAsStringAsync();
-                var photoSets = JsonConvert.DeserializeObject<PhotoSetsDataResult>(contentJson);
-                Console.WriteLine($"{photoSets.ActionName} - {photoSets.PhotoSets.PhotoSet[0].Id}");
-            }
+            var response = await client.GetAsync($"http://localhost:5000/api/v1/content/{1}");
+            response.EnsureSuccessStatusCode();
+            var contentJson = await response.Content.ReadAsStringAsync();
+            var photoSets = JsonConvert.DeserializeObject<PhotoSetsDataResult>(contentJson);
         }
     }
 }

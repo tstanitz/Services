@@ -1,27 +1,37 @@
 ﻿using Grpc.Core;
-using System;
 using System.Threading.Tasks;
 using static GrpcDefinition.ContentServer;
+using BenchmarkDotNet.Running;
+using BenchmarkDotNet.Attributes;
 
 namespace GrpcClient
 {
     public class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
-            await GetContent_v1Async();
+            BenchmarkRunner.Run<BenchmarkClass>();
         }
 
-        public static async Task GetContent_v1Async(int number = 0)
+    }
+
+    public class BenchmarkClass
+    {
+        private readonly ContentServerClient client;
+
+        public BenchmarkClass()
         {
             var channel = new Channel("localhost:50051", ChannelCredentials.Insecure);
-            var client = new ContentServerClient(channel);
+            client = new ContentServerClient(channel);
+        }
+
+        [Benchmark]
+        public async Task Execute()
+        {
             var photoSets = await client.GetContent_v1Async(new GrpcDefinition.Request
             {
-                Number = number
+                Number = 1
             });
-            Console.WriteLine($"{photoSets.ActionName} - {photoSets.PhotoSets.PhotoSet[0].Id}");
-            await channel.ShutdownAsync();
         }
     }
 }
