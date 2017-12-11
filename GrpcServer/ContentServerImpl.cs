@@ -12,11 +12,11 @@ namespace GrpcServer
 
         public async override Task<PhotoSetsDataResult> GetContent_v1(Request request, ServerCallContext context)
         {
-            var contentJson = await ContentProvider.GetCapitalJsonAsync();
+            var contentJson = await ContentProvider.GetCapitalJsonAsync(request.Number);
 
             var photoSetsDataResult = PhotoSetsDataResult.Parser.ParseJson(contentJson);
 
-            photoSetsDataResult.ActionName = nameof(GetContent_v1);
+            photoSetsDataResult.ActionName = $"GRPC - {nameof(GetContent_v1)}";
 
             return photoSetsDataResult;
         }        

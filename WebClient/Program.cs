@@ -14,15 +14,15 @@ namespace WebClient
             await GetApiContenAsync();
         }
 
-        public static async Task GetApiContenAsync()
+        public static async Task GetApiContenAsync(int id = 0)
         {
             using (var client = new HttpClient())
             {
-                var response = await client.GetAsync("http://localhost:5000/api/v1/content");
+                var response = await client.GetAsync($"http://localhost:5000/api/v1/content/{id}");
                 response.EnsureSuccessStatusCode();
                 var contentJson = await response.Content.ReadAsStringAsync();
                 var photoSets = JsonConvert.DeserializeObject<PhotoSetsDataResult>(contentJson);
-                Console.WriteLine($"{photoSets.ActionName}: {string.Join(", ", photoSets.PhotoSets.PhotoSet.Select(ps => ps.Id))}");
+                Console.WriteLine($"{photoSets.ActionName} - {photoSets.PhotoSets.PhotoSet[0].Id}");
             }
         }
     }

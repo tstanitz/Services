@@ -28,4 +28,6 @@ message ContentData{
 	string _Content = 1;
 }
 
-message Request{}
+message Request{
+	int32 Number = 1;
+}

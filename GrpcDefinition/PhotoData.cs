@@ -29,9 +29,10 @@ namespace GrpcDefinition {
             "aW1hcnkYAiABKAkSGwoFVGl0bGUYAyABKAsyDC5Db250ZW50RGF0YRIhCgtE",
             "ZXNjcmlwdGlvbhgEIAEoCzIMLkNvbnRlbnREYXRhEhMKC0RhdGVfQ3JlYXRl",
             "GAUgASgJEhMKC0RhdGVfVXBkYXRlGAYgASgJIh8KC0NvbnRlbnREYXRhEhAK",
-            "CF9Db250ZW50GAEgASgJIgkKB1JlcXVlc3QyQgoNQ29udGVudFNlcnZlchIx",
-            "Cg1HZXRDb250ZW50X3YxEgguUmVxdWVzdBoULlBob3RvU2V0c0RhdGFSZXN1",
-            "bHQiAEIRqgIOR3JwY0RlZmluaXRpb25iBnByb3RvMw=="));
+            "CF9Db250ZW50GAEgASgJIhkKB1JlcXVlc3QSDgoGTnVtYmVyGAEgASgFMkIK",
+            "DUNvbnRlbnRTZXJ2ZXISMQoNR2V0Q29udGVudF92MRIILlJlcXVlc3QaFC5Q",
+            "aG90b1NldHNEYXRhUmVzdWx0IgBCEaoCDkdycGNEZWZpbml0aW9uYgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -39,7 +40,7 @@ namespace GrpcDefinition {
             new pbr::GeneratedClrTypeInfo(typeof(global::GrpcDefinition.PhotoSetsData), global::GrpcDefinition.PhotoSetsData.Parser, new[]{ "PhotoSet" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GrpcDefinition.PhotoSetData), global::GrpcDefinition.PhotoSetData.Parser, new[]{ "Id", "Primary", "Title", "Description", "DateCreate", "DateUpdate" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GrpcDefinition.ContentData), global::GrpcDefinition.ContentData.Parser, new[]{ "Content" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::GrpcDefinition.Request), global::GrpcDefinition.Request.Parser, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::GrpcDefinition.Request), global::GrpcDefinition.Request.Parser, new[]{ "Number" }, null, null, null)
           }));
     }
     #endregion
@@ -716,11 +717,23 @@ namespace GrpcDefinition {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Request(Request other) : this() {
+      number_ = other.number_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Request Clone() {
       return new Request(this);
+    }
+
+    /// <summary>Field number for the "Number" field.</summary>
+    public const int NumberFieldNumber = 1;
+    private int number_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Number {
+      get { return number_; }
+      set {
+        number_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -736,12 +749,14 @@ namespace GrpcDefinition {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (Number != other.Number) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (Number != 0) hash ^= Number.GetHashCode();
       return hash;
     }
 
@@ -752,11 +767,18 @@ namespace GrpcDefinition {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+      if (Number != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Number);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (Number != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Number);
+      }
       return size;
     }
 
@@ -764,6 +786,9 @@ namespace GrpcDefinition {
     public void MergeFrom(Request other) {
       if (other == null) {
         return;
+      }
+      if (other.Number != 0) {
+        Number = other.Number;
       }
     }
 
@@ -775,6 +800,10 @@ namespace GrpcDefinition {
           default:
             input.SkipLastField();
             break;
+          case 8: {
+            Number = input.ReadInt32();
+            break;
+          }
         }
       }
     }
