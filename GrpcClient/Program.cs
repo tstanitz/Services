@@ -19,12 +19,9 @@ namespace GrpcClient
             var client = new ContentServerClient(channel);
             var photoSets = await client.GetContent_v1Async(new GrpcDefinition.Request());
             var ids = new List<string>();
-            foreach (var photoSet in photoSets.PhotoSets)
+            foreach (var ps in photoSets.PhotoSets.PhotoSet)
             {
-                foreach (var ps in photoSet.PhotoSet)
-                {
-                    ids.Add(ps.Id);
-                }
+                ids.Add(ps.Id);
             }
 
             Console.WriteLine($"{photoSets.ActionName}: {string.Join(", ", ids)}");

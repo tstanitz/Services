@@ -4,11 +4,10 @@ option csharp_namespace = "GrpcDefinition";
 
 service ContentServer{
 	rpc GetContent_v1(Request) returns(PhotoSetsDataResult){}
-	rpc GetContent_v2(Request) returns(PhotoSetsDataResult){}
 }
 
 message PhotoSetsDataResult{
-	repeated PhotoSetsData PhotoSets = 1;
+	PhotoSetsData PhotoSets = 1;
 	string ActionName = 2;
 }
 

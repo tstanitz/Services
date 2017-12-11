@@ -23,16 +23,15 @@ namespace GrpcDefinition {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg9QaG90b0RhdGEucHJvdG8iTAoTUGhvdG9TZXRzRGF0YVJlc3VsdBIhCglQ",
-            "aG90b1NldHMYASADKAsyDi5QaG90b1NldHNEYXRhEhIKCkFjdGlvbk5hbWUY",
+            "aG90b1NldHMYASABKAsyDi5QaG90b1NldHNEYXRhEhIKCkFjdGlvbk5hbWUY",
             "AiABKAkiMAoNUGhvdG9TZXRzRGF0YRIfCghQaG90b1NldBgBIAMoCzINLlBo",
             "b3RvU2V0RGF0YSKVAQoMUGhvdG9TZXREYXRhEgoKAklkGAEgASgJEg8KB1By",
             "aW1hcnkYAiABKAkSGwoFVGl0bGUYAyABKAsyDC5Db250ZW50RGF0YRIhCgtE",
             "ZXNjcmlwdGlvbhgEIAEoCzIMLkNvbnRlbnREYXRhEhMKC0RhdGVfQ3JlYXRl",
             "GAUgASgJEhMKC0RhdGVfVXBkYXRlGAYgASgJIh8KC0NvbnRlbnREYXRhEhAK",
-            "CF9Db250ZW50GAEgASgJIgkKB1JlcXVlc3QydQoNQ29udGVudFNlcnZlchIx",
+            "CF9Db250ZW50GAEgASgJIgkKB1JlcXVlc3QyQgoNQ29udGVudFNlcnZlchIx",
             "Cg1HZXRDb250ZW50X3YxEgguUmVxdWVzdBoULlBob3RvU2V0c0RhdGFSZXN1",
-            "bHQiABIxCg1HZXRDb250ZW50X3YyEgguUmVxdWVzdBoULlBob3RvU2V0c0Rh",
-            "dGFSZXN1bHQiAEIRqgIOR3JwY0RlZmluaXRpb25iBnByb3RvMw=="));
+            "bHQiAEIRqgIOR3JwY0RlZmluaXRpb25iBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -71,7 +70,7 @@ namespace GrpcDefinition {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PhotoSetsDataResult(PhotoSetsDataResult other) : this() {
-      photoSets_ = other.photoSets_.Clone();
+      PhotoSets = other.photoSets_ != null ? other.PhotoSets.Clone() : null;
       actionName_ = other.actionName_;
     }
 
@@ -82,12 +81,13 @@ namespace GrpcDefinition {
 
     /// <summary>Field number for the "PhotoSets" field.</summary>
     public const int PhotoSetsFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::GrpcDefinition.PhotoSetsData> _repeated_photoSets_codec
-        = pb::FieldCodec.ForMessage(10, global::GrpcDefinition.PhotoSetsData.Parser);
-    private readonly pbc::RepeatedField<global::GrpcDefinition.PhotoSetsData> photoSets_ = new pbc::RepeatedField<global::GrpcDefinition.PhotoSetsData>();
+    private global::GrpcDefinition.PhotoSetsData photoSets_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::GrpcDefinition.PhotoSetsData> PhotoSets {
+    public global::GrpcDefinition.PhotoSetsData PhotoSets {
       get { return photoSets_; }
+      set {
+        photoSets_ = value;
+      }
     }
 
     /// <summary>Field number for the "ActionName" field.</summary>
@@ -114,7 +114,7 @@ namespace GrpcDefinition {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if(!photoSets_.Equals(other.photoSets_)) return false;
+      if (!object.Equals(PhotoSets, other.PhotoSets)) return false;
       if (ActionName != other.ActionName) return false;
       return true;
     }
@@ -122,7 +122,7 @@ namespace GrpcDefinition {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      hash ^= photoSets_.GetHashCode();
+      if (photoSets_ != null) hash ^= PhotoSets.GetHashCode();
       if (ActionName.Length != 0) hash ^= ActionName.GetHashCode();
       return hash;
     }
@@ -134,7 +134,10 @@ namespace GrpcDefinition {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      photoSets_.WriteTo(output, _repeated_photoSets_codec);
+      if (photoSets_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(PhotoSets);
+      }
       if (ActionName.Length != 0) {
         output.WriteRawTag(18);
         output.WriteString(ActionName);
@@ -144,7 +147,9 @@ namespace GrpcDefinition {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      size += photoSets_.CalculateSize(_repeated_photoSets_codec);
+      if (photoSets_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(PhotoSets);
+      }
       if (ActionName.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(ActionName);
       }
@@ -156,7 +161,12 @@ namespace GrpcDefinition {
       if (other == null) {
         return;
       }
-      photoSets_.Add(other.photoSets_);
+      if (other.photoSets_ != null) {
+        if (photoSets_ == null) {
+          photoSets_ = new global::GrpcDefinition.PhotoSetsData();
+        }
+        PhotoSets.MergeFrom(other.PhotoSets);
+      }
       if (other.ActionName.Length != 0) {
         ActionName = other.ActionName;
       }
@@ -171,7 +181,10 @@ namespace GrpcDefinition {
             input.SkipLastField();
             break;
           case 10: {
-            photoSets_.AddEntriesFrom(input, _repeated_photoSets_codec);
+            if (photoSets_ == null) {
+              photoSets_ = new global::GrpcDefinition.PhotoSetsData();
+            }
+            input.ReadMessage(photoSets_);
             break;
           }
           case 18: {

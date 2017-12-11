@@ -14,6 +14,13 @@ namespace Shared
            ",\"stat\":\"ok\"}");
         }
 
+        public static Task<string> GetCapitalJsonAsync()
+        {
+            return Task.FromResult("{\"PhotoSets\":{\"PhotoSet\":[" +
+           "{\"Id\":\"70000000000000006\",\"Primary\":\"30000000003\",\"Title\":{\"_Content\":\"Test photoset 1\"},\"Description\":{\"_Content\":\"2017. 05. 30. - 2017. 05. 31.\"},\"Date_Create\":\"1488385423\",\"Date_Update\":\"1488824376\"}," +
+           "{\"Id\":\"70000000000000005\",\"Primary\":\"30000000004\",\"Title\":{\"_Content\":\"Test photoset 2\"},\"Description\":{\"_Content\":\"2017. 05. 30.\"},\"Date_Create\":\"1487704807\",\"Date_Update\":\"0\"}]}}");
+        }
+
         public static Task<PhotoSetsDataResult> GetDataAsync()
         {
             return Task.FromResult(new PhotoSetsDataResult
@@ -54,7 +61,7 @@ namespace Shared
                         },
                     }
                 }
-            })
+            });
         }
     }
 }
