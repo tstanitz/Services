@@ -9,13 +9,20 @@ namespace WebApi.Controllers
     public class ContentController : Controller
     {
         [HttpGet]
-        [Route("/api/v1/content/{id}")]
-        public async Task<IActionResult> GetContent(int id)
+        [Route("/api/content")]
+        public async Task<IActionResult> GetContent()
         {
-            var contentJson = await ContentProvider.GetCapitalJsonAsync(id);
+            var contentJson = await ContentProvider.GetCapitalJsonAsync();
             var photoSets = JsonConvert.DeserializeObject<PhotoSetsDataResult>(contentJson);
             photoSets.ActionName = $"MVC - {nameof(GetContent)}";
             return Json(photoSets);
+        }
+
+        [HttpPost]
+        [Route("/api/upload")]
+        public IActionResult Upload([FromBody]UploadData uploadData)
+        {
+            return new OkObjectResult(uploadData.Data.Length);
         }
     }
 }

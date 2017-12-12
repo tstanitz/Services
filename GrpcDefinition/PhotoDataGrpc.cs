@@ -15,13 +15,29 @@ namespace GrpcDefinition {
 
     static readonly grpc::Marshaller<global::GrpcDefinition.Request> __Marshaller_Request = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::GrpcDefinition.Request.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::GrpcDefinition.PhotoSetsDataResult> __Marshaller_PhotoSetsDataResult = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::GrpcDefinition.PhotoSetsDataResult.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::GrpcDefinition.SendImage> __Marshaller_SendImage = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::GrpcDefinition.SendImage.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::GrpcDefinition.Response> __Marshaller_Response = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::GrpcDefinition.Response.Parser.ParseFrom);
 
-    static readonly grpc::Method<global::GrpcDefinition.Request, global::GrpcDefinition.PhotoSetsDataResult> __Method_GetContent_v1 = new grpc::Method<global::GrpcDefinition.Request, global::GrpcDefinition.PhotoSetsDataResult>(
+    static readonly grpc::Method<global::GrpcDefinition.Request, global::GrpcDefinition.PhotoSetsDataResult> __Method_GetContent = new grpc::Method<global::GrpcDefinition.Request, global::GrpcDefinition.PhotoSetsDataResult>(
         grpc::MethodType.Unary,
         __ServiceName,
-        "GetContent_v1",
+        "GetContent",
         __Marshaller_Request,
         __Marshaller_PhotoSetsDataResult);
+
+    static readonly grpc::Method<global::GrpcDefinition.SendImage, global::GrpcDefinition.Response> __Method_UploadImage = new grpc::Method<global::GrpcDefinition.SendImage, global::GrpcDefinition.Response>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UploadImage",
+        __Marshaller_SendImage,
+        __Marshaller_Response);
+
+    static readonly grpc::Method<global::GrpcDefinition.SendImage, global::GrpcDefinition.Response> __Method_UploadImageStream = new grpc::Method<global::GrpcDefinition.SendImage, global::GrpcDefinition.Response>(
+        grpc::MethodType.ClientStreaming,
+        __ServiceName,
+        "UploadImageStream",
+        __Marshaller_SendImage,
+        __Marshaller_Response);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -32,7 +48,17 @@ namespace GrpcDefinition {
     /// <summary>Base class for server-side implementations of ContentServer</summary>
     public abstract partial class ContentServerBase
     {
-      public virtual global::System.Threading.Tasks.Task<global::GrpcDefinition.PhotoSetsDataResult> GetContent_v1(global::GrpcDefinition.Request request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::GrpcDefinition.PhotoSetsDataResult> GetContent(global::GrpcDefinition.Request request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::GrpcDefinition.Response> UploadImage(global::GrpcDefinition.SendImage request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::GrpcDefinition.Response> UploadImageStream(grpc::IAsyncStreamReader<global::GrpcDefinition.SendImage> requestStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -62,21 +88,45 @@ namespace GrpcDefinition {
       {
       }
 
-      public virtual global::GrpcDefinition.PhotoSetsDataResult GetContent_v1(global::GrpcDefinition.Request request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual global::GrpcDefinition.PhotoSetsDataResult GetContent(global::GrpcDefinition.Request request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
-        return GetContent_v1(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return GetContent(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::GrpcDefinition.PhotoSetsDataResult GetContent_v1(global::GrpcDefinition.Request request, grpc::CallOptions options)
+      public virtual global::GrpcDefinition.PhotoSetsDataResult GetContent(global::GrpcDefinition.Request request, grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_GetContent_v1, null, options, request);
+        return CallInvoker.BlockingUnaryCall(__Method_GetContent, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::GrpcDefinition.PhotoSetsDataResult> GetContent_v1Async(global::GrpcDefinition.Request request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::GrpcDefinition.PhotoSetsDataResult> GetContentAsync(global::GrpcDefinition.Request request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
-        return GetContent_v1Async(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return GetContentAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::GrpcDefinition.PhotoSetsDataResult> GetContent_v1Async(global::GrpcDefinition.Request request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::GrpcDefinition.PhotoSetsDataResult> GetContentAsync(global::GrpcDefinition.Request request, grpc::CallOptions options)
       {
-        return CallInvoker.AsyncUnaryCall(__Method_GetContent_v1, null, options, request);
+        return CallInvoker.AsyncUnaryCall(__Method_GetContent, null, options, request);
+      }
+      public virtual global::GrpcDefinition.Response UploadImage(global::GrpcDefinition.SendImage request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UploadImage(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::GrpcDefinition.Response UploadImage(global::GrpcDefinition.SendImage request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UploadImage, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::GrpcDefinition.Response> UploadImageAsync(global::GrpcDefinition.SendImage request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UploadImageAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::GrpcDefinition.Response> UploadImageAsync(global::GrpcDefinition.SendImage request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UploadImage, null, options, request);
+      }
+      public virtual grpc::AsyncClientStreamingCall<global::GrpcDefinition.SendImage, global::GrpcDefinition.Response> UploadImageStream(grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UploadImageStream(new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncClientStreamingCall<global::GrpcDefinition.SendImage, global::GrpcDefinition.Response> UploadImageStream(grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncClientStreamingCall(__Method_UploadImageStream, null, options);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override ContentServerClient NewInstance(ClientBaseConfiguration configuration)
@@ -90,7 +140,9 @@ namespace GrpcDefinition {
     public static grpc::ServerServiceDefinition BindService(ContentServerBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_GetContent_v1, serviceImpl.GetContent_v1).Build();
+          .AddMethod(__Method_GetContent, serviceImpl.GetContent)
+          .AddMethod(__Method_UploadImage, serviceImpl.UploadImage)
+          .AddMethod(__Method_UploadImageStream, serviceImpl.UploadImageStream).Build();
     }
 
   }

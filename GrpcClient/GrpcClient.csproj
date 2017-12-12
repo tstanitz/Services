@@ -17,4 +17,10 @@
     <ProjectReference Include="..\GrpcDefinition\GrpcDefinition.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestPicture\test2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

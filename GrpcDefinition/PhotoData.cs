@@ -29,10 +29,12 @@ namespace GrpcDefinition {
             "aW1hcnkYAiABKAkSGwoFVGl0bGUYAyABKAsyDC5Db250ZW50RGF0YRIhCgtE",
             "ZXNjcmlwdGlvbhgEIAEoCzIMLkNvbnRlbnREYXRhEhMKC0RhdGVfQ3JlYXRl",
             "GAUgASgJEhMKC0RhdGVfVXBkYXRlGAYgASgJIh8KC0NvbnRlbnREYXRhEhAK",
-            "CF9Db250ZW50GAEgASgJIhkKB1JlcXVlc3QSDgoGTnVtYmVyGAEgASgFMkIK",
-            "DUNvbnRlbnRTZXJ2ZXISMQoNR2V0Q29udGVudF92MRIILlJlcXVlc3QaFC5Q",
-            "aG90b1NldHNEYXRhUmVzdWx0IgBCEaoCDkdycGNEZWZpbml0aW9uYgZwcm90",
-            "bzM="));
+            "CF9Db250ZW50GAEgASgJIgkKB1JlcXVlc3QiGQoJU2VuZEltYWdlEgwKBGRh",
+            "dGEYASABKAwiGgoIUmVzcG9uc2USDgoGbGVuZ3RoGAEgASgFMpcBCg1Db250",
+            "ZW50U2VydmVyEi4KCkdldENvbnRlbnQSCC5SZXF1ZXN0GhQuUGhvdG9TZXRz",
+            "RGF0YVJlc3VsdCIAEiYKC1VwbG9hZEltYWdlEgouU2VuZEltYWdlGgkuUmVz",
+            "cG9uc2UiABIuChFVcGxvYWRJbWFnZVN0cmVhbRIKLlNlbmRJbWFnZRoJLlJl",
+            "c3BvbnNlIgAoAUIRqgIOR3JwY0RlZmluaXRpb25iBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -40,7 +42,9 @@ namespace GrpcDefinition {
             new pbr::GeneratedClrTypeInfo(typeof(global::GrpcDefinition.PhotoSetsData), global::GrpcDefinition.PhotoSetsData.Parser, new[]{ "PhotoSet" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GrpcDefinition.PhotoSetData), global::GrpcDefinition.PhotoSetData.Parser, new[]{ "Id", "Primary", "Title", "Description", "DateCreate", "DateUpdate" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GrpcDefinition.ContentData), global::GrpcDefinition.ContentData.Parser, new[]{ "Content" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::GrpcDefinition.Request), global::GrpcDefinition.Request.Parser, new[]{ "Number" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::GrpcDefinition.Request), global::GrpcDefinition.Request.Parser, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GrpcDefinition.SendImage), global::GrpcDefinition.SendImage.Parser, new[]{ "Data" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GrpcDefinition.Response), global::GrpcDefinition.Response.Parser, new[]{ "Length" }, null, null, null)
           }));
     }
     #endregion
@@ -717,23 +721,11 @@ namespace GrpcDefinition {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Request(Request other) : this() {
-      number_ = other.number_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Request Clone() {
       return new Request(this);
-    }
-
-    /// <summary>Field number for the "Number" field.</summary>
-    public const int NumberFieldNumber = 1;
-    private int number_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Number {
-      get { return number_; }
-      set {
-        number_ = value;
-      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -749,14 +741,12 @@ namespace GrpcDefinition {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Number != other.Number) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Number != 0) hash ^= Number.GetHashCode();
       return hash;
     }
 
@@ -767,18 +757,11 @@ namespace GrpcDefinition {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Number != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(Number);
-      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Number != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Number);
-      }
       return size;
     }
 
@@ -787,8 +770,235 @@ namespace GrpcDefinition {
       if (other == null) {
         return;
       }
-      if (other.Number != 0) {
-        Number = other.Number;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SendImage : pb::IMessage<SendImage> {
+    private static readonly pb::MessageParser<SendImage> _parser = new pb::MessageParser<SendImage>(() => new SendImage());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SendImage> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::GrpcDefinition.PhotoDataReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SendImage() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SendImage(SendImage other) : this() {
+      data_ = other.data_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SendImage Clone() {
+      return new SendImage(this);
+    }
+
+    /// <summary>Field number for the "data" field.</summary>
+    public const int DataFieldNumber = 1;
+    private pb::ByteString data_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pb::ByteString Data {
+      get { return data_; }
+      set {
+        data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SendImage);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SendImage other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Data != other.Data) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Data.Length != 0) hash ^= Data.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Data.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteBytes(Data);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Data.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SendImage other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Data.Length != 0) {
+        Data = other.Data;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            Data = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class Response : pb::IMessage<Response> {
+    private static readonly pb::MessageParser<Response> _parser = new pb::MessageParser<Response>(() => new Response());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Response> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::GrpcDefinition.PhotoDataReflection.Descriptor.MessageTypes[6]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Response() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Response(Response other) : this() {
+      length_ = other.length_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Response Clone() {
+      return new Response(this);
+    }
+
+    /// <summary>Field number for the "length" field.</summary>
+    public const int LengthFieldNumber = 1;
+    private int length_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Length {
+      get { return length_; }
+      set {
+        length_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Response);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Response other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Length != other.Length) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Length != 0) hash ^= Length.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Length != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Length);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Length);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Response other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Length != 0) {
+        Length = other.Length;
       }
     }
 
@@ -801,7 +1011,7 @@ namespace GrpcDefinition {
             input.SkipLastField();
             break;
           case 8: {
-            Number = input.ReadInt32();
+            Length = input.ReadInt32();
             break;
           }
         }

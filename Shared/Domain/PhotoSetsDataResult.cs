@@ -30,4 +30,8 @@ namespace Shared.Domain
         public string _Content { get; set; }
     }
 
+    public class UploadData
+    {
+        public byte[] Data { get; set; }
+    }
 }

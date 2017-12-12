@@ -3,7 +3,9 @@
 option csharp_namespace = "GrpcDefinition";
 
 service ContentServer{
-	rpc GetContent_v1(Request) returns(PhotoSetsDataResult){}
+	rpc GetContent(Request) returns(PhotoSetsDataResult){}
+	rpc UploadImage(SendImage) returns(Response) {}
+	rpc UploadImageStream(stream SendImage) returns(Response) {}
 }
 
 message PhotoSetsDataResult{
@@ -29,5 +31,12 @@ message ContentData{
 }
 
 message Request{
-	int32 Number = 1;
+}
+
+message SendImage{
+	bytes data = 1;
+}
+
+message Response{
+    int32 length = 1;
 }
