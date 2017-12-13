@@ -41,7 +41,6 @@ namespace GrpcClient
             {
                 Data = Google.Protobuf.ByteString.CopyFrom(content)
             });
-
         }
 
         [Benchmark]
@@ -58,6 +57,41 @@ namespace GrpcClient
 
                 var response = await call.ResponseAsync;
             }
+        }
+
+        [Benchmark]
+        public async Task ExecuteMultipleUpload()
+        {
+            var content = File.ReadAllBytes(@"TestPicture\test2.jpg");
+
+            for (int i = 0; i < 3; i++)
+            {
+                var response = await client.UploadImageAsync(new GrpcDefinition.SendImage()
+                {
+                    Data = Google.Protobuf.ByteString.CopyFrom(content)
+                });
+            }
+        }
+
+        [Benchmark]
+        public async Task ExecuteUploadMultipleInStream()
+        {
+            var content = File.ReadAllBytes(@"TestPicture\test2.jpg");
+            using (var call = client.UploadImageStream())
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    await call.RequestStream.WriteAsync(new GrpcDefinition.SendImage
+                    {
+                        Data = Google.Protobuf.ByteString.CopyFrom(content)
+                    });
+                }
+                
+                await call.RequestStream.CompleteAsync();
+
+                var response = await call.ResponseAsync;
+            }
+
         }
     }
 }
