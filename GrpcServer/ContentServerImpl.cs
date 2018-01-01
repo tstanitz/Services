@@ -25,7 +25,7 @@ namespace GrpcServer
         {
             return Task.FromResult(new Response()
             {
-                Length = request.Data.Length
+                Length = request.Data.ToByteArray().Length
             });
         }
 

@@ -20,10 +20,11 @@ namespace GrpcClient
     public class BenchmarkClass
     {
         private readonly ContentServerClient client;
+        private const string serverUrl = "localhost:5002";
 
         public BenchmarkClass()
         {
-            var channel = new Channel("localhost:50051", ChannelCredentials.Insecure);
+            var channel = new Channel(serverUrl, ChannelCredentials.Insecure);
             client = new ContentServerClient(channel);
         }
 
@@ -86,7 +87,7 @@ namespace GrpcClient
                         Data = Google.Protobuf.ByteString.CopyFrom(content)
                     });
                 }
-                
+
                 await call.RequestStream.CompleteAsync();
 
                 var response = await call.ResponseAsync;

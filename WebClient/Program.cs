@@ -22,6 +22,7 @@ namespace WebClient
     public class BenchmarkClass
     {
         private readonly HttpClient client;
+        private const string serverUrl = "http://localhost:5001";
 
         public BenchmarkClass()
         {
@@ -31,7 +32,7 @@ namespace WebClient
         [Benchmark]
         public async Task ExecuteContent()
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, $"http://localhost:5000/api/content");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{serverUrl}/api/content");
             var response = await client.SendAsync(request);
             response.EnsureSuccessStatusCode();
             var contentJson = await response.Content.ReadAsStringAsync();
@@ -40,8 +41,8 @@ namespace WebClient
 
         [Benchmark]
         public async Task ExecuteUpload()
-        {            
-            var request = new HttpRequestMessage(HttpMethod.Post, $"http://localhost:5000/api/upload");
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{serverUrl}/api/upload");
             var bytes = File.ReadAllBytes(@"TestPicture\test2.jpg");
 
             var uploadData = new UploadData
@@ -51,7 +52,7 @@ namespace WebClient
 
             request.Content = new StringContent(JsonConvert.SerializeObject(uploadData), Encoding.UTF8, "application/json");
             var response = await client.SendAsync(request);
-            response.EnsureSuccessStatusCode();            
+            response.EnsureSuccessStatusCode();
         }
     }
 }
