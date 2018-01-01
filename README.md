@@ -1,9 +1,10 @@
 # Services
 
-Comparing the performance of the JSON REST api and the GRPC server with sending a small message and wait for the response and to updload an image as a byte[]. 
+Comparing the performance of the JSON REST api and the GRPC server with sending a small message and wait for the response and to upload an image as a byte[]. 
+
 In the GRPC server the upload of multiple images one-by-one or with client side streaming are also measured.
 
-JSON results:
+**JSON results:**
 ``` ini
 
 BenchmarkDotNet=v0.10.11, OS=Windows 10 Redstone 2 [1703, Creators Update] (10.0.15063.786)
@@ -21,7 +22,7 @@ Frequency=2835938 Hz, Resolution=352.6170 ns, Timer=TSC
 |  ExecuteUpload | 464,164.0 us | 10,965.25 us | 21,644.34 us |
 
 
-GRPC results:
+**GRPC results:**
 ``` ini
 
 BenchmarkDotNet=v0.10.11, OS=Windows 10 Redstone 2 [1703, Creators Update] (10.0.15063.786)
@@ -42,7 +43,7 @@ Frequency=2835938 Hz, Resolution=352.6170 ns, Timer=TSC
 | ExecuteUploadMultipleInStream | 11,791.6 us | 231.31 us | 275.36 us |
 
 
-##Execute the measurements
+## Execute the measurements
 
 Start the server and the clients in a separate command window:
 
